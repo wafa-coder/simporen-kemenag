@@ -1,0 +1,6 @@
+{
+  "name": "SimPoren Kemenag",
+  "description": "Sistem pendataan terpusat pondok pesantren tingkat kabupaten oleh Kementerian Agama: profil lembaga, legalitas IJOP, santri, pendidik, sarpras, peta sebaran, dan direktori publik.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

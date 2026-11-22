@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@property --table-fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --table-fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    accent-color: var(--accent-primary);
+    scrollbar-color: #71717A #0A0B0E;
+    scrollbar-width: auto;
+    --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-sans: "DM Sans", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --bg-canvas: #0A0B0E;
+    --bg-surface: #131419;
+    --bg-subtle: #1A1C23;
+    --border-hairline: rgba(255, 255, 255, 0.08);
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
+    --accent-primary: #10B981;
+    --accent-primary-hover: #34D399;
+    --accent-ink: #041D13;
+  }
+
+  html {
+    scroll-padding-top: 5.25rem;
+  }
+
+  ::selection {
+    background-color: rgba(16, 185, 129, 0.28);
+    color: #FAFAFA;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    letter-spacing: 0.005em;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  .pretty-text,
+  main p:not(.font-mono-num) {
+    text-wrap: pretty;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .font-mono-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* State-aware sticky header container (WCAG Focus Not Obscured + progressive shadow) */
+.sticky-header-shell {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  container-type: scroll-state;
+  container-name: site-header;
+}
+
+.sticky-header-bar {
+  background-color: rgba(10, 11, 14, 0.84);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@container site-header scroll-state(stuck: top) {
+  .sticky-header-bar {
+    background-color: rgba(10, 11, 14, 0.96);
+    border-bottom-color: rgba(16, 185, 129, 0.22);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.72);
+  }
+}
+
+/* Dark monochrome map tiles & Leaflet controls */
+.leaflet-tile-pane {
+  filter: grayscale(100%) invert(92%) contrast(1.06) brightness(0.9);
+}
+
+.leaflet-container {
+  background-color: #111216 !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: #16181F !important;
+  color: #FAFAFA !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55) !important;
+}
+
+.leaflet-popup-close-button {
+  color: #A1A1AA !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #FFFFFF !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: #16181F !important;
+  color: #FAFAFA !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #242630 !important;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(10, 11, 14, 0.78) !important;
+  color: #A1A1AA !important;
+}
+
+.leaflet-control-attribution a {
+  color: #E4E4E7 !important;
+}
+
+/* Modern Web Guidance: animate <dialog> to/from top layer & prevent scroll chaining */
+dialog {
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.22s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog {
+    transform: scale(0.96) translateY(6px);
+  }
+}
+
+dialog[open] {
+  opacity: 1;
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog[open] {
+    transform: scale(1) translateY(0);
+  }
+
+  @starting-style {
+    dialog[open] {
+      transform: scale(0.96) translateY(6px);
+    }
+  }
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 0.22s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog,
+  dialog::backdrop {
+    transition-duration: 0.08s;
+  }
+}
+
+/* Modern Web Guidance: validate input only after interaction (:user-invalid) */
+.field-input:is(:user-invalid, .user-invalid-fallback) {
+  border-color: rgba(255, 255, 255, 0.75);
+  background-color: #181A22;
+}
+
+.field-error {
+  display: none;
+}
+
+.field-input:is(:user-invalid, .user-invalid-fallback) + .field-error {
+  display: block;
+}
+
+/* Responsive table wrapper with container queries + scroll-driven edge affordance fades */
+.table-region {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  container-type: inline-size;
+  scroll-padding-inline: 2rem;
+}
+
+@keyframes reveal-table-fade-start {
+  to {
+    --table-fade-start: 2rem;
+  }
+}
+
+@keyframes hide-table-fade-end {
+  from {
+    --table-fade-end: 2rem;
+  }
+}
+
+@supports (animation-timeline: scroll(self inline)) {
+  .table-region {
+    mask:
+      linear-gradient(black, black) no-clip subtract,
+      linear-gradient(to right, black, transparent) 0 0 / var(--table-fade-start) 100% no-repeat no-clip,
+      linear-gradient(to right, transparent, black) 100% 0 / var(--table-fade-end) 100% no-repeat no-clip;
+    animation: reveal-table-fade-start linear both, hide-table-fade-end linear both;
+    animation-timeline: scroll(self inline);
+    animation-range: 0 2rem, calc(100% - 2rem) 100%;
+  }
+}
+
+.table-region table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+/* Visually hidden live announcer */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print optimization for Kemenag PDF/Print view */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
