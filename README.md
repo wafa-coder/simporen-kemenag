@@ -177,13 +177,15 @@ Video demo direkam otomatis dengan skill `video-demo` dari **build produksi yang
 
 ### Menjawab permintaan revisi (Operator)
 
-[![Demo: menjawab catatan revisi Kemenag](docs/demo/operator-review-poster.jpg)](docs/demo/operator-review.mp4)
+[![Demo: menjawab catatan revisi Kemenag](docs/demo/operator-review-poster.jpg)](https://wafa-coder.github.io/simporen-kemenag/demo/)
 
-[▶ Putar / unduh video langsung](docs/demo/operator-review.mp4)
+**[▶ Putar video di browser (GitHub Pages)](https://wafa-coder.github.io/simporen-kemenag/demo/)**
+
+Atau unduh langsung: [`operator-review.mp4`](docs/demo/operator-review.mp4) · [`full-tour.mp4`](docs/demo/full-tour.mp4)
 
 Durasi ±27 detik · 1080p (H.264/yuv420p + AAC) · narasi bahasa Inggris · data contoh lokal.
 
-Video tur lengkap: [`docs/demo/full-tour.mp4`](docs/demo/full-tour.mp4).
+> GitHub tidak menyediakan pemutar untuk MP4 di halaman file repository, jadi video diputar lewat halaman GitHub Pages di atas.
 
 > Alur yang ditampilkan: membuka portal → masuk simulasi operator → membaca catatan revisi di dashboard → membuka formulir lembaga → menuju bagian Legalitas/IJOP.
 
