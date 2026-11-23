@@ -179,7 +179,9 @@ Video demo direkam otomatis dengan skill `video-demo` dari **build produksi yang
 
 [![Demo: menjawab catatan revisi Kemenag](docs/demo/operator-review-poster.jpg)](docs/demo/operator-review.mp4)
 
-Durasi ±27 detik · 1080p · narasi bahasa Inggris · data contoh lokal.
+[▶ Putar / unduh video langsung](docs/demo/operator-review.mp4)
+
+Durasi ±27 detik · 1080p (H.264/yuv420p + AAC) · narasi bahasa Inggris · data contoh lokal.
 
 Video tur lengkap: [`docs/demo/full-tour.mp4`](docs/demo/full-tour.mp4).
 
