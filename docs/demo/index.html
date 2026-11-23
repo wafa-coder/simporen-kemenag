@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SimPoren Kemenag — Demo Video</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0a0b0e;
+        color: #fafafa;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 20px;
+        box-sizing: border-box;
+      }
+      h1 { font-size: 1.4rem; margin: 0; }
+      p { color: #a1a1aa; font-size: 0.9rem; margin: 0; }
+      video {
+        width: 100%;
+        max-width: 1280px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: #131419;
+      }
+      a { color: #34d399; }
+      .links { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+    </style>
+  </head>
+  <body>
+    <h1>SimPoren Kemenag — Demo Video</h1>
+    <p>Menjawab catatan revisi Kemenag · narasi otomatis · data contoh</p>
+
+    <video controls playsinline preload="metadata" poster="operator-review-poster.jpg">
+      <source src="operator-review.mp4" type="video/mp4" />
+      Peramban Anda tidak mendukung pemutaran video MP4.
+    </video>
+
+    <div class="links">
+      <a href="operator-review.mp4">Unduh video ini</a>
+      <a href="full-tour.mp4">Lihat tur lengkap</a>
+      <a href="https://github.com/wafa-coder/simporen-kemenag">Kembali ke repository</a>
+    </div>
+  </body>
+</html>
